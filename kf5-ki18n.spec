@@ -1,17 +1,17 @@
 # TODO:
 # find_lang needs to be updated (to handle pmap, pmapc, js files)
-%define		kdeframever	5.45
+%define		kdeframever	5.48
 %define		qtver		5.3.2
 %define		kfname		ki18n
 
 Summary:	KDE Gettext-based UI text internationalization
 Name:		kf5-%{kfname}
-Version:	5.45.0
+Version:	5.48.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	032894655a87b3f89e229b4bba413f1a
+# Source0-md5:	3eb2dc83924bba328eef743bd6e65c11
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Concurrent-devel >= %{qtver}
 BuildRequires:	Qt5Core-devel >= %{qtver}
