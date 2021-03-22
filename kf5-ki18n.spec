@@ -1,17 +1,17 @@
 # TODO:
 # find_lang needs to be updated (to handle pmap, pmapc, js files)
-%define		kdeframever	5.79
+%define		kdeframever	5.80
 %define		qtver		5.9.0
 %define		kfname		ki18n
 
 Summary:	KDE Gettext-based UI text internationalization
 Name:		kf5-%{kfname}
-Version:	5.79.0
+Version:	5.80.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	086b5b66351ffd6b9c734896b6a740f9
+# Source0-md5:	3d525eb2b202c6d00422e7df38efb77c
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Concurrent-devel >= %{qtver}
 BuildRequires:	Qt5Core-devel >= %{qtver}
@@ -79,7 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{kfname}5.lang
 %defattr(644,root,root,755)
 %doc README.md
-%attr(755,root,root) %ghost %{_libdir}/libKF5I18n.so.5
+%ghost %{_libdir}/libKF5I18n.so.5
 %attr(755,root,root) %{_libdir}/libKF5I18n.so.*.*
 %attr(755,root,root) %{qt5dir}/plugins/kf5/ktranscript.so
 %{_datadir}/qlogging-categories5/ki18n.categories
@@ -90,5 +90,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/KF5/KI18n
 %{_includedir}/KF5/ki18n_version.h
 %{_libdir}/cmake/KF5I18n
-%attr(755,root,root) %{_libdir}/libKF5I18n.so
+%{_libdir}/libKF5I18n.so
 %{qt5dir}/mkspecs/modules/qt_KI18n.pri
