@@ -1,7 +1,7 @@
 # TODO:
 # find_lang needs to be updated (to handle pmap, pmapc, js files)
 %define		kdeframever	5.80
-%define		qtver		5.9.0
+%define		qtver		5.14.0
 %define		kfname		ki18n
 
 Summary:	KDE Gettext-based UI text internationalization
@@ -15,16 +15,17 @@ Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{ve
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Concurrent-devel >= %{qtver}
 BuildRequires:	Qt5Core-devel >= %{qtver}
-BuildRequires:	Qt5Script-devel >= %{qtver}
+BuildRequires:	Qt5Qml-devel >= %{qtver}
 BuildRequires:	Qt5Test-devel >= %{qtver}
-BuildRequires:	cmake >= 2.8.12
-BuildRequires:	gettext-devel
+BuildRequires:	cmake >= 3.5
 BuildRequires:	kf5-extra-cmake-modules >= %{version}
 BuildRequires:	ninja
-BuildRequires:	perl-base
+BuildRequires:	python3
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
+Requires:	Qt5Core >= %{qtver}
+Requires:	Qt5Qml >= %{qtver}
 Requires:	kf5-dirs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -46,6 +47,8 @@ Summary:	Header files for %{kfname} development
 Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kfname}
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	cmake >= 3.5
+Requires:	gettext-tools
 
 %description devel
 Header files for %{kfname} development.
