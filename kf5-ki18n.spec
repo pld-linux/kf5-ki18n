@@ -10,7 +10,7 @@
 Summary:	KDE Gettext-based UI text internationalization
 Name:		kf5-%{kfname}
 Version:	5.100.0
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
@@ -79,6 +79,9 @@ ctest
 %install
 rm -rf $RPM_BUILD_ROOT
 %ninja_install -C build
+
+# not supported by glibc yet
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ie
 
 %find_lang %{kfname}5 --with-qm --all-name --with-kde
 
