@@ -3,23 +3,23 @@
 %bcond_with	tests		# build with tests
 # TODO:
 # find_lang needs to be updated (to handle pmap, pmapc, js files)
-%define		kdeframever	5.114
+%define		kdeframever	5.249.0
 %define		qtver		5.15.2
 %define		kfname		ki18n
 
 Summary:	KDE Gettext-based UI text internationalization
 Name:		kf5-%{kfname}
-Version:	5.114.0
-Release:	1
+Version:	5.249.0
+Release:	0.1
 License:	LGPL v2.1+
 Group:		X11/Libraries
-Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	7bc25e948c063a2706c8b71f506fa63a
+Source0:	https://download.kde.org/unstable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
+# Source0-md5:	58db3e56a5a333f1219e7465e338a596
 URL:		http://www.kde.org/
-BuildRequires:	Qt5Concurrent-devel >= %{qtver}
-BuildRequires:	Qt5Core-devel >= %{qtver}
-BuildRequires:	Qt5Qml-devel >= %{qtver}
-BuildRequires:	Qt5Test-devel >= %{qtver}
+BuildRequires:	Qt6Concurrent-devel >= %{qtver}
+BuildRequires:	Qt6Core-devel >= %{qtver}
+BuildRequires:	Qt6Qml-devel >= %{qtver}
+BuildRequires:	Qt6Test-devel >= %{qtver}
 BuildRequires:	cmake >= 3.16
 BuildRequires:	kf5-extra-cmake-modules >= %{version}
 BuildRequires:	ninja
@@ -27,12 +27,12 @@ BuildRequires:	python3
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Requires:	Qt5Core >= %{qtver}
-Requires:	Qt5Qml >= %{qtver}
+Requires:	Qt6Core >= %{qtver}
+Requires:	Qt6Qml >= %{qtver}
 Requires:	kf5-dirs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		qt5dir		%{_libdir}/qt5
+%define		qt6dir		%{_libdir}/qt6
 
 %description
 KI18n provides functionality for internationalizing user interface
@@ -82,7 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 # not supported by glibc yet
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ie
 
-%find_lang %{kfname}5 --with-qm --all-name --with-kde
+%find_lang %{kfname}6 --with-qm --all-name --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -90,26 +90,27 @@ rm -rf $RPM_BUILD_ROOT
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files -f %{kfname}5.lang
+%files -f %{kfname}6.lang
 %defattr(644,root,root,755)
 %doc README.md
-%ghost %{_libdir}/libKF5I18n.so.5
-%attr(755,root,root) %{_libdir}/libKF5I18n.so.*.*
-%ghost %{_libdir}/libKF5I18nLocaleData.so.5
-%attr(755,root,root) %{_libdir}/libKF5I18nLocaleData.so.5.*.*
-%attr(755,root,root) %{qt5dir}/plugins/kf5/ktranscript.so
-%{_datadir}/qlogging-categories5/ki18n.categories
-%{_datadir}/qlogging-categories5/ki18n.renamecategories
-%dir %{_libdir}/qt5/qml/org/kde/i18n
-%dir %{_libdir}/qt5/qml/org/kde/i18n/localeData
-%attr(755,root,root) %{_libdir}/qt5/qml/org/kde/i18n/localeData/libki18nlocaledataqmlplugin.so
-%{_libdir}/qt5/qml/org/kde/i18n/localeData/qmldir
+%ghost %{_libdir}/libKF6I18n.so.6
+%attr(755,root,root) %{_libdir}/libKF6I18n.so.*.*
+%ghost %{_libdir}/libKF6I18nLocaleData.so.6
+%attr(755,root,root) %{_libdir}/libKF6I18nLocaleData.so.5.*.*
+%attr(755,root,root) %{qt6dir}/plugins/kf6/ktranscript.so
+%{_datadir}/qlogging-categories6/ki18n.categories
+%{_datadir}/qlogging-categories6/ki18n.renamecategories
+%dir %{_libdir}/qt6/qml/org/kde/i18n
+%dir %{_libdir}/qt6/qml/org/kde/i18n/localeData
+%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/i18n/localeData/libki18nlocaledataqmlplugin.so
+%{_libdir}/qt6/qml/org/kde/i18n/localeData/qmldir
+%{_libdir}/qt6/qml/org/kde/i18n/localeData/kde-qmlmodule.version
+%{_libdir}/qt6/qml/org/kde/i18n/localeData/ki18nlocaledataqmlplugin.qmltypes
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/KF5/KI18n
-%{_includedir}/KF5/KI18nLocaleData
-%{_libdir}/cmake/KF5I18n
-%{_libdir}/libKF5I18n.so
-%{_libdir}/libKF5I18nLocaleData.so
-%{qt5dir}/mkspecs/modules/qt_KI18n.pri
+%{_includedir}/KF6/KI18n
+%{_includedir}/KF6/KI18nLocaleData
+%{_libdir}/cmake/KF6I18n
+%{_libdir}/libKF6I18n.so
+%{_libdir}/libKF6I18nLocaleData.so
